@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import s from './ChartComponent.module.css'
-import { degreeConvert, getTimeHourly } from '../utils/functions';
+import { degreeConvert, getTimeHourly } from '../../utils/functions';
 
 import { VictoryArea, VictoryLabel, VictoryAxis, VictoryChart } from 'victory'
 

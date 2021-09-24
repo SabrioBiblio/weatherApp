@@ -4,12 +4,10 @@ import { useDispatch } from 'react-redux'
 import s from "./CardWeather.module.css"
 import { translate } from '../../utils/translate';
 import { degreeConvert, getDate } from '../../utils/functions'
-import spiner from '../../images/spiner.svg'
-import ChartComponent from '../../ChartComponent/ChartComponent';
+import ChartComponent from '../ChartComponent/ChartComponent';
 import { deleteCard, degreeUpdate } from '../../actions/actions';
 
 export default function CardWeather({data, globalLanguage, index}) {
-
 
    const dispatch = useDispatch()
 

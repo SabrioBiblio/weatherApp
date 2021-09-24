@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 
 import Select from 'react-select'
-import s from './LanguageChange.module.css'
 import { updateCards } from '../../actions/actions';
 
 export default function LanguageChange({setLanguage, globalLanguage}) {
@@ -25,6 +24,10 @@ export default function LanguageChange({setLanguage, globalLanguage}) {
    })
 
    const customStyles = {
+      singleValue: () => ({
+         position: 'absolute',
+         left: 5
+      }),
       option: (provided, state) => ({
         ...provided,
         
