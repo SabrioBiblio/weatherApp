@@ -4,10 +4,12 @@ import { useDispatch } from 'react-redux'
 import s from "./CardWeather.module.css"
 import { translate } from '../../utils/translate';
 import { degreeConvert, getDate } from '../../utils/functions'
-import ChartComponent from '../ChartComponent/ChartComponent';
+import spiner from '../../images/spiner.svg'
+import ChartComponent from '../../components/ChartComponent/ChartComponent'
 import { deleteCard, degreeUpdate } from '../../actions/actions';
 
 export default function CardWeather({data, globalLanguage, index}) {
+
 
    const dispatch = useDispatch()
 
@@ -16,6 +18,12 @@ export default function CardWeather({data, globalLanguage, index}) {
    }, [globalLanguage]);
 
    let translateWord = translate(globalLanguage);
+
+   if(Object.keys(data).length === 0){
+      return (
+         <></>
+      )
+   }
 
    const { main: {temp, feels_like, pressure, humidity}, weather: [{description, icon}], name, sys: {country}, wind: {speed}, dt, timezone, hourly, degreeSystem } = data;
 

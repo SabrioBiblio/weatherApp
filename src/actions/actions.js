@@ -19,9 +19,9 @@ const setCards = (payload) => {
 }
 
 const request = async (globalLanguage, coord) => {
-   const require = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=${globalLanguage}&lat=${coord.lat}&lon=${coord.lon}&appid=15cd78f0f22b9d9f4119aaf4beeaa7b6`)
+   const require = await fetch(`https://api.openweathermap.org/data/2.5/weather?lang=${globalLanguage}&lat=${coord.lat}&lon=${coord.lon}&appid=69bbce69261de359d431f87f41c5f11d`)
       const result = await require.json();
-      const require2 = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lang=${globalLanguage}&lat=${coord.lat}&lon=${coord.lon}&appid=15cd78f0f22b9d9f4119aaf4beeaa7b6`)
+      const require2 = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lang=${globalLanguage}&lat=${coord.lat}&lon=${coord.lon}&appid=69bbce69261de359d431f87f41c5f11d`)
       const result2 = await require2.json();
       const data = {
          coord: result.coord,
@@ -60,6 +60,21 @@ export const deleteCard = (payload) => {
       type: DELETE_CARD,
       payload
    }
+}
+
+export const getUserPosition = (globalLanguage) => {
+   
+   return async dispatch => {
+      let promPosition = new Promise(function(resolve) {
+         navigator.geolocation.getCurrentPosition((pos) => {
+            let lon = pos.coords.longitude;
+            let lat = pos.coords.latitude;
+            resolve({lon, lat})
+         })
+      })
+      promPosition.then(async (res) => dispatch(addCard(await request(globalLanguage, res))))
+   }
+
 }
 
 export const getCard = (globalLanguage, card) => {
